@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import  Typography  from '@mui/material/Typography';
 import food from './Food_icon.png';
 
-const apiUrl= process.env.REACT_APP_API_URL + '/products';
+const apiUrl= 'https://'+ process.env.REACT_APP_API_URL + '/products';
 // const testapi = 'https://products-gateway-5bfqjz6y.uc.gateway.dev/products'
 function ProductGrid() {
    const [products,setProducts] = React.useState([])

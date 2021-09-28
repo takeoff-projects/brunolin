@@ -11,7 +11,7 @@ import Container from '@mui/material/Container';
 import MenuItem from '@mui/material/MenuItem';
 
 
-const apiUrl= process.env.REACT_APP_API_URL + '/products';
+const apiUrl= 'https://'+ process.env.REACT_APP_API_URL + '/products';
 const categories = ["Diary","Candy","Produce","Meat","Bread","Other"];
 const temps = ["Frozen","Cool","Room"];
 
