@@ -1,0 +1,67 @@
+# openapi2-run.yaml
+swagger: '2.0'
+info:
+  title: products-api serverless-api
+  description: Sample API on API Gateway with a Cloud Run backend
+  version: 1.0.0
+schemes:
+  - https
+produces:
+  - application/json
+x-google-backend:
+  address: https://products-gateway-5bfqjz6y.uc.gateway.dev
+paths:
+  /:
+    get:
+      summary: homePage
+      operationId: getHomePage
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+  /products:
+    get:
+      summary: Get all products
+      operationId: getAllProducts
+      responses:
+        '200':
+          description: A successful response
+    post:
+      operationId: postProduct
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              prodId:
+                type: string
+              name:
+                type: string
+              category:
+                type: string
+              temp:
+                type: string
+      responses:
+        '200':
+          description: A successfull response
+  /products/{id}:
+    get:
+      operationId: getProduct
+      description: Obtain information about a product from id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successfully returned an artist
+          schema:
+            type: string
