@@ -47,7 +47,7 @@ gcloud iam service-accounts create $SA_NAME \
     --description="Service account for api gateway" \
     --display-name="api-gateway"
 
-gcloud projects add-iam-policy-binding roi-takeoff-user38 \
+gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
     --member="serviceAccount:$SA_NAME@$GOOGLE_CLOUD_PROJECT.iam.gserviceaccount.com" \
     --role="roles/run.routes.invoke"
 
@@ -58,7 +58,7 @@ gcloud api-gateway api-configs create products-config \
 
 gcloud api-gateway gateways create products-gateway \
   --api=products-api --api-config=products-config \
-  --location=us-central1 --project=roi-takeoff-user38
+  --location=us-central1 --project=$GOOGLE_CLOUD_PROJECT
 
 
 export REACT_APP_API_URL="$(gcloud api-gateway gateways describe products-gateway --location=us-central1 --project=$GOOGLE_CLOUD_PROJECT --format 'value(defaultHostname)')"
