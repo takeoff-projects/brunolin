@@ -10,6 +10,7 @@ import ButtonAppBar  from "./AppBar";
 import Container  from "@mui/material/Container";
 import UploadPage from "./UploadPage";
 import ProductsPage from "./ProductsPage";
+import EtlPage from "./EtlPage";
 
 function App() {
   console.log(process.env)
@@ -28,7 +29,7 @@ function App() {
           <ProductsPage/>
           </Route>
           <Route path="/etl">
-          <UploadPage/>
+          <EtlPage/>
           </Route>
           <Route path="/">
           <UploadPage/>

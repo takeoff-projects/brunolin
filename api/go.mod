@@ -5,6 +5,7 @@ go 1.16
 require (
 	cloud.google.com/go v0.95.0 // indirect
 	cloud.google.com/go/datastore v1.6.0
+	cloud.google.com/go/storage v1.16.1
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/googleapis/gax-go/v2 v2.1.1 // indirect
 	github.com/gorilla/mux v1.8.0

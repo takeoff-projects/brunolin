@@ -19,6 +19,19 @@ gcloud services enable containerregistry.googleapis.com
 
 # cloud builds enable
 gcloud services enable cloudbuild.googleapis.com
+
+# cloud functions enable
+gcloud services enable cloudfunctions.googleapis.com 
+
+gsutil mb gs://etl_app_files -p $GOOGLE_CLOUD_PROJECT
+
+cd etl
+gcloud functions deploy gcs_trigger \
+--runtime python39 \
+--trigger-resource etl_app_files \
+--trigger-event google.storage.object.finalize
+
+cd ..
 # ----- use either terraform or gcloud for cloud run resources -------------
 # cd terraform 
 # terraform apply -var="project_id=$GOOGLE_CLOUD_PROJECT"
@@ -49,7 +62,7 @@ gcloud iam service-accounts create $SA_NAME \
 
 gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
     --member="serviceAccount:$SA_NAME@$GOOGLE_CLOUD_PROJECT.iam.gserviceaccount.com" \
-    --role="roles/run.routes.invoke"
+    --role="roles/run.invoker"
 
 
 gcloud api-gateway api-configs create products-config \

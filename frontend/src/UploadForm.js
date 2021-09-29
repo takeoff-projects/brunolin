@@ -9,9 +9,12 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import MenuItem from '@mui/material/MenuItem';
+import Divider from '@mui/material/Divider';
+import Chip from '@mui/material/Chip';
 
 
 const apiUrl= 'https://'+ process.env.REACT_APP_API_URL + '/products';
+const testUrl= "http://localhost:8080/files";
 const categories = ["Diary","Candy","Produce","Meat","Bread","Other"];
 const temps = ["Frozen","Cool","Room"];
 
@@ -19,6 +22,9 @@ const temps = ["Frozen","Cool","Room"];
 export default function UploadForm() {
     const [category, setCategory] = useState("")
     const [temp, setTemp] = useState("")
+
+    const [selectedFile, setSelectedFile] = useState();
+	  const [isFilePicked, setIsFilePicked] = useState(false);
 
     const handleCategoryChange = (event) => {
       setCategory(event.target.value);
@@ -57,6 +63,34 @@ export default function UploadForm() {
 
    };
 
+   const handleFileUpload = (event) => {
+    event.preventDefault();
+    const data = new FormData();
+    data.append("filename", selectedFile);
+    console.log(data)
+    // eslint-disable-next-line no-console
+    console.log({
+      filename: data.get('filename'),
+    });
+   
+    fetch(testUrl,{
+      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      body: data,
+    }).then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+
+    };
+
+    const handleFile = (event) => {
+      setSelectedFile(event.target.files[0]);
+      setIsFilePicked(true);
+    };
+
     return (
         <Container maxWidth="md">
         <Box
@@ -75,6 +109,7 @@ export default function UploadForm() {
             Product Upload
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -132,9 +167,7 @@ export default function UploadForm() {
                   </TextField>
               </Grid>
               <Grid item xs={12}>
-              </Grid>
-            </Grid>
-            <Button
+              <Button
               type="submit"
               fullWidth
               variant="contained"
@@ -142,11 +175,70 @@ export default function UploadForm() {
             >
               Upload Product
             </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
               </Grid>
             </Grid>
+
+            
+            <Divider>
+                <Chip label="OR" />
+            </Divider>
+      
           </Box>
+
+          <Box component="form" noValidate onSubmit={handleFileUpload} sx={{
+                display: 'flex',
+                flexDirection:'column',
+                minHeight:'30vh',
+                alignItems: 'center',
+                justifyContent:'center'
+              }}>
+
+
+            <Button
+              variant="contained"
+              component="label"
+            >
+              Choose File
+              <input
+                type="file"
+                onChange= {handleFile}
+                hidden
+              />
+            </Button>
+            {isFilePicked ? (
+                <Box>
+                   <Typography variant="caption" gutterBottom component="div">
+                   Filename: {selectedFile.name}
+                  </Typography>
+
+                  <Typography variant="caption" gutterBottom component="div">
+                  Filetype: {selectedFile.type}
+                  </Typography>
+
+                  <Typography variant="caption" gutterBottom component="div">
+                  Size in bytes: {selectedFile.size}
+                  </Typography>
+
+                  <Typography variant="caption" gutterBottom component="div">
+                  lastModifiedDate:{' '}
+                    {selectedFile.lastModifiedDate.toLocaleDateString()}
+                  </Typography>
+
+                  <Button
+                        type="submit"
+                        variant="contained"
+                        sx={{ mt: 3, mb: 2 }}
+                      >
+                        Upload JSON File
+                  </Button>
+                </Box>
+              ) : (
+                <Typography variant="caption" gutterBottom component="div">
+                  Select a file to show details
+                </Typography>
+              )}
+            
+            </Box>
         </Box>
     </Container>
     );

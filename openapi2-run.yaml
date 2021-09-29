@@ -9,7 +9,7 @@ schemes:
 produces:
   - application/json
 x-google-backend:
-  address: https://products-gateway-5bfqjz6y.uc.gateway.dev
+  address: https://products-api-d5q7ylz3sq-uc.a.run.app
 paths:
   /:
     get:
@@ -65,3 +65,22 @@ paths:
           description: Successfully returned an artist
           schema:
             type: string
+  /files:
+    get:
+      summary: Get all file upload info 
+      operationId: getAllFiles
+      responses:
+        '200':
+          description: A successful response
+            
+    post:
+      summary: Uploads a file.
+      operationId: uploadFile
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      description: The file to upload.
+      responses:
+        '200':
+          description: A successful response

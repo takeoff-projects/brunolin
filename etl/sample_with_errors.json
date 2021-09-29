@@ -1,0 +1,9 @@
+[
+    {"prodId":"BL987","name": "Test Product 987","category":"toys","temp":"hot"},
+    {"prodId":"BL900","name": "Test Product 900","category":"toys","temp":"reallyhot"},
+    {"prodId":"BL345","name": "Test Product 345","category":"toys","temp":"verycold"},
+    {"prodId":"BL435","name": "Test Product 435","category":"toys","temp":"burning"},
+    {"prodId":"BL986","name": "Test Product 986","category":"toys","temp":"hot"},
+    {"prodId":"BL421","name": "Test Product 421","category":"toys","temp":"hot"}
+
+]
