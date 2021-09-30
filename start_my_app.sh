@@ -1,3 +1,8 @@
+# ----- terraform incomplete ... working on it -------------
+# cd terraform 
+# terraform apply -var="project_id=$GOOGLE_CLOUD_PROJECT" -var="user_id=$USER"
+# cd ..
+
 # install webi for yq
 curl -sS https://webinstall.dev/yq | bash
 
@@ -32,11 +37,6 @@ gcloud functions deploy gcs_trigger \
 --trigger-event google.storage.object.finalize
 
 cd ..
-# ----- use either terraform or gcloud for cloud run resources -------------
-# cd terraform 
-# terraform apply -var="project_id=$GOOGLE_CLOUD_PROJECT"
-# cd ..
-
 
 # --------- gcloud run deploy go image ---------------------
 cd api
