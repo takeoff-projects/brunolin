@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -13,10 +13,13 @@ import Divider from '@mui/material/Divider';
 import Chip from '@mui/material/Chip';
 
 
-const apiUrl= 'https://'+ process.env.REACT_APP_API_URL + '/products';
-const testUrl= "http://localhost:8080/files";
+const apiUrl= 'https://'+ process.env.REACT_APP_API_URL;
+const productsUrl = apiUrl + '/products';
+const filesUrl= apiUrl + '/files';
+
 const categories = ["Diary","Candy","Produce","Meat","Bread","Other"];
 const temps = ["Frozen","Cool","Room"];
+
 
 
 export default function UploadForm() {
@@ -26,6 +29,12 @@ export default function UploadForm() {
     const [selectedFile, setSelectedFile] = useState();
 	  const [isFilePicked, setIsFilePicked] = useState(false);
 
+    // const [authToken,setAuthToken] = useState("")
+
+    // useEffect(() => {
+    //   setAuthToken(props.token)
+    //   },[setAuthToken,props.token])
+    
     const handleCategoryChange = (event) => {
       setCategory(event.target.value);
     };
@@ -45,7 +54,7 @@ export default function UploadForm() {
           temp: temp
         });
        
-        fetch(apiUrl,{
+        fetch(productsUrl,{
           method: 'POST', // *GET, POST, PUT, DELETE, etc.
           body: JSON.stringify({
             name: data.get('name'),
@@ -73,7 +82,7 @@ export default function UploadForm() {
       filename: data.get('filename'),
     });
    
-    fetch(testUrl,{
+    fetch(filesUrl,{
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
       body: data,
     }).then(response => response.json())
@@ -93,6 +102,7 @@ export default function UploadForm() {
 
     return (
         <Container maxWidth="md">
+      
         <Box
           sx={{
             display: 'flex',

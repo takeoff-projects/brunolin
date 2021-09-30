@@ -17,7 +17,6 @@ import Container from '@mui/material/Container';
 
   
 const apiUrl= 'https://'+ process.env.REACT_APP_API_URL + '/files';
-const testUrl = 'http://localhost:8080/files';
 
   function Row(props) {
     const { row } = props;

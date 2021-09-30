@@ -6,9 +6,8 @@ import Typography from "@mui/material/Typography";
 function ProductsPage() {
     return (
      <Container maxWidth="xl" disableGutters={true}>
-       <ButtonAppBar />
     
-        <ProductGrid />
+        <ProductGrid/>
     
        </Container>
     );

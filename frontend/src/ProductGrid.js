@@ -1,4 +1,4 @@
-import * as React from 'react';
+import {useEffect, useState} from 'react';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -15,9 +15,15 @@ import food from './Food_icon.png';
 const apiUrl= 'https://'+ process.env.REACT_APP_API_URL + '/products';
 // const testapi = 'https://products-gateway-5bfqjz6y.uc.gateway.dev/products'
 function ProductGrid() {
-   const [products,setProducts] = React.useState([])
+   const [products,setProducts] = useState([])
+  //  const [authToken,setAuthToken] = useState("")
+   
+  //  useEffect(() => {
+  //    console.log("set token for products page")
+  //   setAuthToken(props.token)
+  //   },[setAuthToken,props.token])
 
-    React.useEffect(() => {
+    useEffect(() => {
     fetch(apiUrl).then((res => res.json())).then((data) => {
         console.log(data);
         setProducts(data)});

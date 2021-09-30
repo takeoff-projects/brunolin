@@ -39,44 +39,6 @@ export default function ButtonAppBar() {
             <Link to='/products' style={linkStyle}> Products</Link>
             <Link to='/etl' style={linkStyle}> ETL</Link>
           </Stack>
-
-            {/* <Stack direction="row" spacing={2}>
-                <Item component={Link} to={'/upload'}>Upload</Item>
-                <Item component={Link} to={'/products'}>Products</Item>
-                <Item component={Link} to={'/etl'}>ETL</Item>
-            </Stack> */}
-
-        
-            {/* <Link
-              component={UploadPage}
-              variant="button"
-              color="text.primary"
-              href="#"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              Products
-            </Link>
-            <Link
-              component={UploadPage}
-              variant="button"
-              color="text.primary"
-              href="#"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              Upload
-            </Link>
-            <Link
-              component={UploadPage}
-              variant="button"
-              color="text.primary"
-              href="#"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              ETL Errors
-            </Link> */}
-{/* 
-          <Button color="inherit">Products</Button>
-          <Button color="inherit">Upload </Button> */}
         </Toolbar>
       </AppBar>
     </Box>
