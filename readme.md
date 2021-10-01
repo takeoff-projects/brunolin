@@ -1,5 +1,5 @@
 # serverless-demo
-
+![arch diagram](https://github.com/takeoff-projects/brunolin/blob/main/arch.png)
 ## Quick Start
 1. Login to your GCP Project (https://console.cloud.google.com/)
 2. Open Cloud Shell 

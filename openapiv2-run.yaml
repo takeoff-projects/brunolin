@@ -1,0 +1,110 @@
+# openapi2-run.yaml
+swagger: '2.0'
+info:
+  title: products-api serverless-api
+  description: Sample API on API Gateway with a Cloud Run backend
+  version: 1.0.0
+securityDefinitions:
+  firebase:
+    authorizationUrl: ""
+    flow: "implicit"
+    type: "oauth2"
+    x-google-issuer: "https://securetoken.google.com/roi-takeoff-user38"
+    x-google-jwks_uri: "https://www.googleapis.com/service_accounts/v1/metadata/x509/securetoken@system.gserviceaccount.com"
+    x-google-audiences: "roi-takeoff-user38"
+schemes:
+  - https
+produces:
+  - application/json
+host: products-api-auth-3bxiy97ewerom.apigateway.roi-takeoff-user38.cloud.goog
+x-google-endpoints:
+- name: products-api-auth-3bxiy97ewerom.apigateway.roi-takeoff-user38.cloud.goog
+  allowCors: True
+x-google-backend:
+  address: https://products-api-d5q7ylz3sq-uc.a.run.app
+paths:
+  /:
+    get:
+      summary: homePage
+      security:
+        - firebase: []
+      operationId: getHomePage
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+  /products:
+    get:
+      summary: Get all products
+      security:
+        - firebase: []
+      operationId: getAllProducts
+      responses:
+        '200':
+          description: A successful response
+    post:
+      operationId: postProduct
+      security:
+        - firebase: []
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              prodId:
+                type: string
+              name:
+                type: string
+              category:
+                type: string
+              temp:
+                type: string
+      responses:
+        '200':
+          description: A successfull response
+  /products/{id}:
+    get:
+      operationId: getProduct
+      security:
+        - firebase: []
+      description: Obtain information about a product from id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successfully returned an artist
+          schema:
+            type: string
+  /files:
+    get:
+      summary: Get all file upload info 
+      security:
+        - firebase: []
+      operationId: getAllFiles
+      responses:
+        '200':
+          description: A successful response
+            
+    post:
+      summary: Uploads a file.
+      security:
+        - firebase: []
+      operationId: uploadFile
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      description: The file to upload.
+      responses:
+        '200':
+          description: A successful response
