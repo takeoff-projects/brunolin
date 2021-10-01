@@ -10,7 +10,7 @@ const app = initializeApp(firebaseConfig)
 const creds = {email: "testuser38@example.com",password: "12345678"}
 const auth = getAuth(app);
 
-function getAuthToken() {
+ function getAuthToken() {
     signInWithEmailAndPassword(auth, creds.email, creds.password)
     .then((userCredential) => {
         // Signed in 
@@ -18,6 +18,7 @@ function getAuthToken() {
         console.log("Sign in Successful");
         console.log(userCredential)
         // ...
+        
     })
     .catch((error) => {
         const errorCode = error.code;

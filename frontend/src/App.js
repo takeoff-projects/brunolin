@@ -11,13 +11,12 @@ import Container  from "@mui/material/Container";
 import UploadPage from "./UploadPage";
 import ProductsPage from "./ProductsPage";
 import EtlPage from "./EtlPage";
-
+// import LoginButton from './Login';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
@@ -28,13 +27,19 @@ const linkStyle = {
   color: 'white'
 };
 
+
 function App() {
 
   console.log(process.env)
   console.log(process.env.REACT_APP_API_URL)
-  // const [authToken,setAuthToken] = useState("")
 
-
+  // const [authToken,setAuthToken] = useState();
+  
+  // getting auth token works but requests are being blocked by CORS
+  // if(!authToken) {
+  //   return <LoginButton setAuthToken={setAuthToken} />
+  // }
+  
   return (
   <Router>
   
@@ -74,7 +79,7 @@ function App() {
           <ProductsPage />
           </Route>
           <Route path="/etl">
-          <EtlPage />
+          <EtlPage/>
           </Route>
           <Route path="/">
           <UploadPage/>
